@@ -1,0 +1,18 @@
+spring:
+  config:
+    import:
+      - classpath:/application-security.yml
+
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: true
+
+  thymeleaf:
+    cache: false
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+#    org.hibernate.type: trace

@@ -1,0 +1,12 @@
+server:
+  serverlet:
+    context-path: /
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  port: 8901
+
+custom:
+  static:
+    path: /nas/project/streamo/resources
