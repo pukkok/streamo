@@ -4,38 +4,38 @@ import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.domain.Persistable;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import watch.movie.base.RoleCode;
+import watch.movie.entity.base.BaseEntity;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 @Entity
 @Getter
-@EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Member implements UserDetails, Persistable<String> {
+public class Member extends BaseEntity implements UserDetails, Persistable<String> {
 
     @Id
+    @Column(name = "member_id")
     private String id;
     private String name;
     private String password;
+    private String birthDay;
 
     @Enumerated(EnumType.STRING)
     private RoleCode role;
 
-    @CreatedDate
-    LocalDateTime createDate;
-    @LastModifiedDate
-    LocalDateTime updateDate;
+    public Member(String id, String name, String password, RoleCode role) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+        this.role = role;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

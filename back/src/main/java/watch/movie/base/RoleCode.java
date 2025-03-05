@@ -2,5 +2,6 @@ package watch.movie.base;
 
 public enum RoleCode {
     ADMIN,
-    USER,
+    ALLOW,
+    NOT_ALLOW
 }
