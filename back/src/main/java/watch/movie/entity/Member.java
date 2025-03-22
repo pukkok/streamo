@@ -25,15 +25,16 @@ public class Member extends BaseEntity implements UserDetails, Persistable<Strin
     private String id;
     private String name;
     private String password;
-    private String birthDay;
+    private String birthday;
 
     @Enumerated(EnumType.STRING)
     private RoleCode role;
 
-    public Member(String id, String name, String password, RoleCode role) {
+    public Member(String id, String name, String password, String birthday, RoleCode role) {
         this.id = id;
         this.name = name;
         this.password = password;
+        this.birthday = birthday;
         this.role = role;
     }
 
@@ -82,4 +83,9 @@ public class Member extends BaseEntity implements UserDetails, Persistable<Strin
     public void changePassword(String password) {
         this.password = password;
     }
+
+    public void changeRole(RoleCode role) {
+        this.role = role;
+    }
+
 }
