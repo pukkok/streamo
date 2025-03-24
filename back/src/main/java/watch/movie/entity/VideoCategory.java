@@ -16,7 +16,10 @@ import java.util.List;
 @Table(name = "video_category")
 public class VideoCategory extends BaseEntity {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "video_category_seq")
+    @SequenceGenerator(name = "video_category_seq",
+            sequenceName = "VIDEO_CATEGORY_SEQUENCE"
+    )
     @Column(name = "video_category_id")
     private Long id;
     private String name;

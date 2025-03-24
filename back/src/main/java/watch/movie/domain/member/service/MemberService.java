@@ -4,15 +4,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import watch.movie.base.AgeRatingCode;
 import watch.movie.base.RoleCode;
 import watch.movie.domain.member.dto.MemberDto;
 import watch.movie.domain.member.repository.MemberJpaRepository;
 import watch.movie.domain.member.repository.MemberQueryRepository;
 import watch.movie.entity.Member;
 
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @Service
@@ -24,14 +21,16 @@ public class MemberService {
     private final MemberQueryRepository queryRepository;
 
     @Transactional
-    public void join(Member member) {
-        Member findMember = jpaRepository.findById(member.getId());
+    public void join(MemberDto dto) {
+        Member findMember = jpaRepository.findById(dto.getId());
 
         if (findMember != null) {
             throw new DuplicateKeyException("중복 아이디 발견");
         }
 
-        jpaRepository.save(member);
+        Member saveMember = Member.of(dto.getId(), dto.getName(), dto.getPassword(), dto.getBirthday(), dto.getRole());
+
+        jpaRepository.save(saveMember);
     }
 
     @Transactional
@@ -41,7 +40,7 @@ public class MemberService {
     }
 
     public List<MemberDto> findAll() {
-        return jpaRepository.findAll().stream().map(m -> new MemberDto(m)).toList();
+        return jpaRepository.findAll().stream().map(MemberDto::new).toList();
     }
 
 }

@@ -1,8 +1,8 @@
 package watch.movie.domain.notice.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import watch.movie.entity.Member;
+import watch.movie.entity.Notice;
 
-public interface NoticeJpaRepository extends JpaRepository<Member, Long> {
+public interface NoticeJpaRepository extends JpaRepository<Notice, Long> {
 
 }

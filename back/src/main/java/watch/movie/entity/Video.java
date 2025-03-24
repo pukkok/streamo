@@ -12,7 +12,10 @@ import watch.movie.entity.base.BaseEntity;
 @Getter
 public class Video extends BaseEntity {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "video_seq")
+    @SequenceGenerator(name = "video_seq",
+            sequenceName = "VIDEO_SEQUENCE"
+    )
     @Column(name = "video_id")
     private Long id;
     private String name;
@@ -29,7 +32,10 @@ public class Video extends BaseEntity {
     private String posterPath;
     @Column(name = "file_path")
     private String filePath;
-
     @Column(name = "delete_yn")
     private Character deleteYn;
+
+    public void viewCountUp() {
+        this.view += 1;
+    }
 }

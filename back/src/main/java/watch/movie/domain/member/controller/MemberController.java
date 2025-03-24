@@ -9,6 +9,7 @@ import watch.movie.base.StatusCode;
 import watch.movie.domain.member.dto.MemberDto;
 import watch.movie.domain.member.service.MemberService;
 import watch.movie.entity.Member;
+import watch.movie.entity.Notice;
 
 import java.util.List;
 
@@ -24,9 +25,9 @@ public class MemberController {
     }
 
     @PostMapping("/member/join")
-    public StatusCode join(@ModelAttribute Member member) {
+    public StatusCode join(@ModelAttribute MemberDto dto) {
         try {
-            memberService.join(member);
+            memberService.join(dto);
         } catch (DuplicateKeyException e) {
             return StatusCode.DUPLICATED_ID;
         }

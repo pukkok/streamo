@@ -9,6 +9,7 @@ public class MemberDto {
 
     private String id;
     private String name;
+    private String password;;
     private String birthday;
     private RoleCode role;
 
