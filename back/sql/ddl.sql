@@ -63,6 +63,7 @@ create table required_board
     title            varchar(255),
     content          varchar(255),
     view             bigint,
+    upload_yn        char,
     delete_yn        char,
     create_by        varchar(255),
     update_by        varchar(255),
