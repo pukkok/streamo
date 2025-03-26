@@ -32,6 +32,18 @@ public class Member extends BaseEntity implements UserDetails, Persistable<Strin
     @Enumerated(EnumType.STRING)
     private RoleCode role;
 
+    public Member(String id, String name, String password, String birthday, RoleCode role) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+        this.birthday = birthday;
+        this.role = role;
+    }
+
+    public static Member of(String id, String name, String password, String birthday, RoleCode role) {
+        return new Member(id, name, password, birthday, role);
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> roles = new ArrayList<>();
@@ -80,17 +92,6 @@ public class Member extends BaseEntity implements UserDetails, Persistable<Strin
 
     public void changeRole(RoleCode role) {
         this.role = role;
-    }
-
-    public static Member of(String id, String name, String password, String birthday, RoleCode role) {
-        Member member = new Member();
-        member.setId(id);
-        member.setName(name);
-        member.setPassword(password);
-        member.setBirthday(birthday);
-        member.setRole(role);
-
-        return member;
     }
 
 }

@@ -4,15 +4,15 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import watch.movie.base.StatusCode;
 import watch.movie.domain.notice.dto.NoticeDto;
 import watch.movie.domain.notice.dto.cond.NoticeSearchCond;
 import watch.movie.domain.notice.repository.NoticeJpaRepository;
 import watch.movie.domain.notice.repository.NoticeQueryRepository;
 import watch.movie.entity.Notice;
+import watch.movie.utility.ItemCheck;
 
+import java.rmi.NoSuchObjectException;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)
@@ -27,22 +27,30 @@ public class NoticeService {
     }
 
     @Transactional
-    public NoticeDto findById(Long id) {
+    public NoticeDto findById(Long id) throws NoSuchObjectException {
         Notice findNotice = jpaRepository.findById(id).orElse(null);
-        findNotice.viewCountUp();
+        if (ItemCheck.isNotEmpty(findNotice)) {
+            findNotice.viewCountUp();
+        } else {
+            throw new NoSuchObjectException("게시글이 존재하지 않습니다.");
+        }
 
         return new NoticeDto(findNotice);
     }
 
-    public void updateNotice(Long id, NoticeDto notice) {
-        Notice findNotice = jpaRepository.findById(id).get();
+    public void updateNotice(Long id, NoticeDto notice) throws NoSuchObjectException{
+        Notice findNotice = jpaRepository.findById(id).orElse(null);
 
-        findNotice.changeTitle(notice);
-        findNotice.changeContent(notice);
+        if (ItemCheck.isNotEmpty(findNotice)) {
+            findNotice.changeTitle(notice);
+            findNotice.changeContent(notice);
+        } else {
+            throw new NoSuchObjectException("게시글이 존재하지 않습니다.");
+        }
     }
 
     public void save(NoticeDto notice) {
-        Notice saveNotice = Notice.of(notice.getTitle(), notice.getContent(), 0L);
+        Notice saveNotice = Notice.of(notice.getTitle(), notice.getContent());
         jpaRepository.save(saveNotice);
     }
 }

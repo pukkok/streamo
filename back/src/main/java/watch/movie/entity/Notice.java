@@ -27,12 +27,14 @@ public class Notice extends BaseEntity {
     @Column(name = "delete_yn")
     private Character deleteYn;
 
-    public static Notice of(String title, String content, Long view) {
-        Notice notice = new Notice();
-        notice.setTitle(title);
-        notice.setContent(content);
-        notice.setView(view);
-        return notice;
+    private Notice (String title, String content) {
+        this.title = title;
+        this.content = content;
+        this.view = 0L;
+    }
+
+    public static Notice of(String title, String content) {
+        return new Notice(title, content);
     }
 
     public void viewCountUp() {
