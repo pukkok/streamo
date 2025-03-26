@@ -1,7 +1,9 @@
 package watch.movie.domain.member.controller;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 import watch.movie.base.AgeRatingCode;
 import watch.movie.base.RoleCode;
@@ -13,6 +15,7 @@ import watch.movie.entity.Notice;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 public class MemberController {
@@ -21,11 +24,15 @@ public class MemberController {
 
     @GetMapping("/members")
     public List<MemberDto> allMember() {
+        log.info("MemberController.allMember -> {}", "전체 사용자 조회");
+
         return memberService.findAll();
     }
 
     @PostMapping("/member/join")
     public StatusCode join(@ModelAttribute MemberDto dto) {
+        log.info("MemberController.join -> {}", "회원가입 시도");
+
         try {
             memberService.join(dto);
         } catch (DuplicateKeyException e) {
@@ -36,7 +43,13 @@ public class MemberController {
 
     @PostMapping("/member/role/{memberId}")
     public StatusCode updateRole(@PathVariable("memberId") String memberId, @RequestBody RoleCode role) {
-        memberService.updateRole(memberId, role);
+        log.info("MemberController.updateRole -> {}", "회원 궎나 변경 시도");
+
+        try {
+            memberService.updateRole(memberId, role);
+        } catch (UsernameNotFoundException e) {
+            return StatusCode.USER_NOT_FOUND;
+        }
         return StatusCode.SUCCESS;
     }
 

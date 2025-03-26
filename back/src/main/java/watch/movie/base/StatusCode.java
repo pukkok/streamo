@@ -15,7 +15,8 @@ public enum StatusCode {
     /**
      * 회원
      */
-    DUPLICATED_ID(HttpStatus.BAD_REQUEST.value(), "C_400", "중복된 아이디가 존재합니다.");
+    DUPLICATED_ID(HttpStatus.BAD_REQUEST.value(), "C_400", "중복된 아이디가 존재합니다."),
+    USER_NOT_FOUND(HttpStatus.NOT_FOUND.value(), "C_404", "해당 유저가 존재하지 않습니다.");
 
     /**
      * 커스텀해서 사용할 변수들

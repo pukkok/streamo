@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import watch.movie.domain.member.repository.MemberJpaRepository;
 import watch.movie.entity.Member;
+import watch.movie.utility.ItemCheck;
 
 @Service
 @RequiredArgsConstructor
@@ -18,8 +19,8 @@ public class ProfileUserDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
-        Member member = memberJpaRepository.findById(id);
-        if(member == null){
+        Member member = memberJpaRepository.findById(id).orElse(null);
+        if(!ItemCheck.isEmpty(member)){
             throw new UsernameNotFoundException("user not found");
         }
 
