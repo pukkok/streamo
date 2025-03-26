@@ -14,11 +14,18 @@ public class NoticeDto {
     private Long view;
     private LocalDateTime registDate;
 
+    private boolean isExist;
+
+    public NoticeDto(boolean isExist) {
+        this.isExist = isExist;
+    }
+
     public NoticeDto(Notice notice) {
         this.title = notice.getTitle();
         this.author = notice.getCreateBy();
         this.content = notice.getContent();
         this.view = notice.getView();
         this.registDate = notice.getCreateDate();
+        this.isExist = true;
     }
 }

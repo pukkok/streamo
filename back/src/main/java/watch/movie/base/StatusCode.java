@@ -10,6 +10,7 @@ public enum StatusCode {
      */
     SUCCESS(HttpStatus.OK.value(), "C_200", "성공"),
     NOT_FOUND(HttpStatus.NOT_FOUND.value(), "C_404", "페이지를 찾을 수 없습니다."),
+    BOARD_NOT_FOUND(HttpStatus.NOT_FOUND.value(), "C_404", "해당 게시글을 찾을 수 없습니다."),
 
     /**
      * 회원

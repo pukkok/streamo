@@ -8,6 +8,7 @@ import watch.movie.domain.notice.dto.NoticeDto;
 import watch.movie.domain.notice.dto.cond.NoticeSearchCond;
 import watch.movie.domain.notice.service.NoticeService;
 
+import java.rmi.NoSuchObjectException;
 import java.util.List;
 
 @RestController
@@ -29,12 +30,21 @@ public class NoticeController {
 
     @GetMapping("/notice/{id}")
     public NoticeDto getNotice(@PathVariable("id") Long id) {
-        return noticeService.findById(id);
+        try {
+            return noticeService.findById(id);
+        } catch (NoSuchObjectException e) {
+            return new NoticeDto(false);
+        }
     }
 
     @PostMapping("/notice/{id}")
     public StatusCode updateNotice(@PathVariable("id") Long id, @RequestBody NoticeDto notice) {
-        noticeService.updateNotice(id, notice);
+        try {
+            noticeService.updateNotice(id, notice);
+        } catch (NoSuchObjectException e) {
+            return StatusCode.BOARD_NOT_FOUND;
+        }
+
         return StatusCode.SUCCESS;
     }
 
