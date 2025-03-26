@@ -28,7 +28,7 @@ public class MemberService {
             throw new DuplicateKeyException("중복 아이디 발견");
         }
 
-        Member saveMember = Member.of(dto.getId(), dto.getName(), dto.getPassword(), dto.getBirthday(), dto.getRole());
+        Member saveMember = Member.of(dto.getId(), dto.getName(), dto.getPassword(), dto.getBirthday());
 
         jpaRepository.save(saveMember);
     }

@@ -17,7 +17,7 @@ public class NoticeController {
 
     private final NoticeService noticeService;
 
-    @GetMapping("/notice")
+    @GetMapping("/notices")
     public List<NoticeDto> allNotice(@ModelAttribute NoticeSearchCond cond, Pageable pageable) {
         return noticeService.findAll(cond, pageable);
     }
@@ -37,8 +37,8 @@ public class NoticeController {
         }
     }
 
-    @PostMapping("/notice/{id}")
-    public StatusCode updateNotice(@PathVariable("id") Long id, @RequestBody NoticeDto notice) {
+    @PutMapping("/notice/{id}")
+    public StatusCode updateNotice(@PathVariable("id") Long id, @ModelAttribute NoticeDto notice) {
         try {
             noticeService.updateNotice(id, notice);
         } catch (NoSuchObjectException e) {

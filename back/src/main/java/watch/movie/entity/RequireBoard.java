@@ -26,6 +26,9 @@ public class RequireBoard extends BaseEntity {
     @JoinColumn(name = "member_id")
     private Member member;
 
+    @Column(name = "upload_yn")
+    private Character uploadYn;
+
     @Column(name = "delete_yn")
     private Character deleteYn;
 

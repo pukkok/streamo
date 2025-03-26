@@ -32,16 +32,16 @@ public class Member extends BaseEntity implements UserDetails, Persistable<Strin
     @Enumerated(EnumType.STRING)
     private RoleCode role;
 
-    public Member(String id, String name, String password, String birthday, RoleCode role) {
+    public Member(String id, String name, String password, String birthday) {
         this.id = id;
         this.name = name;
         this.password = password;
         this.birthday = birthday;
-        this.role = role;
+        this.role = RoleCode.NOT_ALLOW;
     }
 
-    public static Member of(String id, String name, String password, String birthday, RoleCode role) {
-        return new Member(id, name, password, birthday, role);
+    public static Member of(String id, String name, String password, String birthday) {
+        return new Member(id, name, password, birthday);
     }
 
     @Override
