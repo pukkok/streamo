@@ -1,7 +1,9 @@
+import SignModal from "./components/SignModal"
+
 const Home = () => {
   return (
-    <div className="">
-      새로 시작하는 프로젝트
+    <div className="flex justify-center items-center h-screen bg-gray-500">
+      <SignModal />
     </div>
   )
 }
