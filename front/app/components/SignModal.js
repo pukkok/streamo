@@ -71,7 +71,9 @@ const SignModal = ({onClose}) => {
         after:ml-[44%]
         after:transform-flat
         after:skew-x-20
-        light-bg
+        after:bg-linear-to-b 
+        after:from-[hsla(0,0%,100%,0.1)] 
+        after:to-[hsla(0,0%,100%,0)]
         `}>
         Streamo
         </h1>
