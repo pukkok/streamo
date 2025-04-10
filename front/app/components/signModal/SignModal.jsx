@@ -29,7 +29,7 @@ const SignModal = ({onClose}) => {
 
   return (
     <div onClick={closeModal} 
-    className="fixed w-[100vw] h-[100vh] bg-[transparent] top-0 left-0" >
+    className="fixed w-[100vw] h-[100vh] bg-[transparent] top-0 left-0 z-50" >
       <form
         ref={formRef} 
         className="
