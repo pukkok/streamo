@@ -1,8 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import PlayIcon from '../Icons/PlayIcon'
-import HeartIcon from '../Icons/HeartIcon'
+import PlayIcon from '../icons/PlayIcon'
+import HeartIcon from '../icons/HeartIcon'
 
 const HeroContent = ({ title, description, age, views, runtime, genre }) => {
   return (

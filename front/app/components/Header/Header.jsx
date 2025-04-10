@@ -1,8 +1,8 @@
 'use client'
 
-import Logo from '../Logo'
-import NavMenu from '../NavMenu'
-import SearchBar from '../SearchBar'
+import Logo from './Logo'
+import NavMenu from './NavMenu'
+import SearchBar from './SearchBar'
 import LoginButton from './LoginButton'
 import Container from '../Container'
 

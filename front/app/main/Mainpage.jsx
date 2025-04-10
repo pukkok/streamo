@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import Header from '../components/Header/Header'
-import SignModal from '../components/SignModal/SignModal' // ← 이거 연결!
+import Header from '../components/header/Header'
+import SignModal from '../components/signModal/SignModal' // ← 이거 연결!
 import HeroSection from '../components/hero/HeroSection'
 
 const MainPage = () => {
