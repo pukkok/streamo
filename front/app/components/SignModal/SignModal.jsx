@@ -1,9 +1,9 @@
 'use client'
 
 import { useRef, useState } from "react"
-import InputBox from "./SignModal/InputBox"
-import AuthSwitchMessage from "./SignModal/AuthSwitchMessage"
-import SubmitButton from "./SignModal/SubmitButton"
+import InputBox from "./InputBox"
+import AuthSwitchMessage from "./AuthSwitchMessage"
+import SubmitButton from "./SubmitButton"
 
 const SignModal = ({onClose}) => {
 
