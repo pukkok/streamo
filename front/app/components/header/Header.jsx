@@ -9,9 +9,9 @@ import Container from '../Container'
 const Header = ({ onLoginClick }) => {
 
   return (
-    <header className="bg-[#111]">
+    <header>
       <Container className='flex items-center gap-12
-    py-4 bg-[#111] shadow-md'>
+    py-4 shadow-md'>
         <Logo />
         <NavMenu />
         <SearchBar />
