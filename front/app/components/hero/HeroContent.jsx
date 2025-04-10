@@ -6,13 +6,13 @@ import HeartIcon from '../Icons/HeartIcon'
 
 const HeroContent = ({ title, description, age, views, runtime, genre }) => {
   return (
-    <div className="absolute bottom-10 left-10 text-white max-w-[500px] z-10">
-      <h2 className="text-4xl font-bold mb-4">{title}</h2>
-      <p className="text-sm mb-2 opacity-80">
+    <div className="absolute bottom-14 left-0 text-white max-w-[500px] z-10">
+      <h2 className="text-4xl font-bold mb-3">{title}</h2>
+      <p className="text-sm mb-5 opacity-80">
         {age} ・ {views} views ・ {runtime} ・ {genre}
       </p>
-      <p className="text-sm mb-4 line-clamp-2">{description}</p>
-      <div className="flex items-center gap-4 mt-4">
+      <p className="text-sm mb-6 line-clamp-2">{description}</p>
+      <div className="flex items-center gap-4 mt-6">
 
         <Link href="/" className="
           flex items-center gap-2
