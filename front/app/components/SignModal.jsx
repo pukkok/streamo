@@ -23,6 +23,10 @@ const SignModal = ({onClose}) => {
     setIsLoginPart(isLoginPart => !isLoginPart)
   }
 
+  const testb = async (params) => {
+    return await fetch(baseurl.includes('localhost') ? '/nolocal' : '/local', {}, {})
+  }
+
   return (
     <div onClick={closeModal} 
     className="fixed w-[100vw] h-[100vh] bg-[transparent] top-0 left-0" >
